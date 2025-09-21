@@ -1,41 +1,187 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Calculadora de Juros</title>
-    <link rel="stylesheet" href="assets/css.css">
+    <style>
+        /* Corpo e centralização */
+        body {
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center; /* centraliza horizontalmente */
+            align-items: center;     /* centraliza verticalmente */
+            height: 100vh;           /* altura total da viewport */
+            padding: 20px;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        /* Caixa da calculadora */
+        .calculator-box {
+            background-color: #e6f0ff;
+            border: 1px solid #cceeff;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        /* Título */
+        .calculator-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #004aad;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #004aad;
+            padding-bottom: 10px;
+        }
+
+        /* Formulário */
+        .calculator-form {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .input-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            font-size: 15px;
+            font-weight: normal;
+        }
+
+        .input-group input[type="number"] {
+            width: 150px;
+            padding: 8px 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            text-align: right;
+        }
+
+        /* Opções de rádio */
+        .radio-group {
+            text-align: left;
+            margin: 25px auto 35px auto;
+            border: 1px solid #cceeff;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f7fcff;
+            max-width: 90%;
+        }
+
+        .radio-group p {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        .radio-options label {
+            margin-right: 20px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* Botões */
+        .action-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 40px;
+            width: 100%;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary {
+            background-color: #004aad;
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: #ffcc00;
+            color: #333;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Área de resultados */
+        .results-area {
+            text-align: left;
+            padding-top: 20px;
+            border-top: 2px dashed #b3d9ff;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .results-area p {
+            font-weight: bold;
+            color: #004aad;
+        }
+
+        .results-area span {
+            font-weight: normal;
+            float: right;
+        }
+    </style>
 </head>
 <body>
-    <nav class="nav">
-        <i class="uil uil-bars navOpenBtn"></i>
-        <img src="assets/images/logo2.0.png" style="width: 300px;" alt="" class="logo crt">
+    <div class="calculator-box"> 
+        <h1 class="calculator-title">CALCULADORA FINANCEIRA</h1>
 
-        <ul class="nav-links">
-            <i class="uil uil-times navCloseBtn"></i>
-            <li><a href="index.html">Home</a></li>
-          </ul>
-    </nav>
-    
-    <div class="a">
-        <center>
-        <h1><br>
-            <br>Calculadora de Juros:</h1>
-		<h3><br>Simples e Composto</h3>
-    </div>
-    </center>
-    <section class="hero container">
-        
-        <img class="hero-avatar" src="./assets/images/piscina 2.png" alt="">
+        <form class="calculator-form">
+            <div class="input-group">
+                <label for="capital">Capital Inicial:</label>
+                <input type="number" id="capital" placeholder="R$" required />
+            </div>
 
-    </section>
+            <div class="input-group">
+                <label for="taxa">Taxa de Juros (%):</label>
+                <input type="number" id="taxa" placeholder="%" required />
+            </div>
+
+            <div class="input-group">
+                <label for="tempo">Tempo (períodos):</label>
+                <input type="number" id="tempo" required />
+            </div>
+
+            <div class="radio-group">
+                <p>Tipo de Cálculo:</p>
+                <div class="radio-options">
+                    <input type="radio" id="simples" name="juros_tipo" value="simples" checked />
+                    <label for="simples">Juros Simples</label>
+
+                    <input type="radio" id="composto" name="juros_tipo" value="composto" />
+                    <label for="composto">Juros Compostos</label>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button type="submit" class="btn btn-primary">CALCULAR</button>
+                <button type="reset" class="btn btn-secondary">LIMPAR</button>
+            </div>
+        </form>
+
+        <div class="results-area">
+            <p>Juros Calculados: <span id="juros_calculados">R$ 0.00</span></p>
+            <p>Montante Final: <span id="montante_final">R$ 0.00</span></p>
+        </div>
+    </div> 
 </body>
-
-	<div class="logo">
-	<img src="./assets/images/logo2.0.png" width="70px" height="50px">
-	</div></center>
-    
-<script type="text/javascript" src="assets/js/menu.js"></script>
-<script type="text/javascript" src="assets/js/script.js"></script>
-<script src="assets/js/navbar.js"></script>
 </html>

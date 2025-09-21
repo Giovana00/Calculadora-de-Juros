@@ -1,0 +1,36 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Corpo da página */
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background-color: #f0f8ff;
+  
+  /* Flex para centralizar */
+  display: flex;
+  justify-content: center; /* centraliza horizontalmente */
+  align-items: center;     /* centraliza verticalmente */
+  height: 100vh;           /* altura total da viewport */
+  padding: 20px;
+}
+
+/* Caixa da calculadora */
+.calculator-box {
+  background-color: #e6f0ff;
+  border: 1px solid #cceeff;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
